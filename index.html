@@ -1,47 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyFlow — Student Planner</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartQuiz | Quiz Application SaaS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand"><span class="brand-mark">✦</span><div><strong>StudyFlow</strong><small>STUDENT WORKSPACE</small></div></div>
-      <nav>
-        <button class="nav-link active" data-view="dashboard">▦ <span>Dashboard</span></button>
-        <button class="nav-link" data-view="tasks">☑ <span>My Tasks</span></button>
-        <button class="nav-link" data-view="schedule">▤ <span>Study Schedule</span></button>
-        <button class="nav-link" data-view="goals">◎ <span>Goals</span></button>
-      </nav>
-      <div class="sidebar-bottom"><div class="mini-avatar">S</div><div><strong>Student</strong><small>Free workspace</small></div></div>
-    </aside>
-    <main class="main">
-      <header class="topbar"><div><p class="eyebrow">YOUR PERSONAL STUDY SPACE</p><h1 id="page-title">Good morning! 👋</h1><p class="subheading">Plan your day, stay focused, and make progress.</p></div><div class="date-pill" id="today-date"></div></header>
-      <section class="welcome-card"><div><span class="welcome-label">LET'S MAKE TODAY COUNT</span><h2>A little progress every day<br/>adds up to big results.</h2><p>Organize your tasks and build a study routine that works for you.</p></div><div class="welcome-art">📚<span>✦</span></div></section>
-      <section class="stats-grid">
-        <article class="stat-card"><div class="stat-icon purple">☑</div><p>Tasks completed</p><strong id="completed-count">0</strong><small>Keep up the great work</small></article>
-        <article class="stat-card"><div class="stat-icon orange">◷</div><p>Tasks remaining</p><strong id="remaining-count">0</strong><small>One step at a time</small></article>
-        <article class="stat-card"><div class="stat-icon green">◎</div><p>Study goals</p><strong id="goal-count">0</strong><small>Goals you have set</small></article>
-      </section>
-      <section class="content-grid">
-        <article class="panel task-panel" id="task-section"><div class="panel-heading"><div><h3 id="task-heading">Today's tasks</h3><p>Your next steps, all in one place.</p></div><button class="primary-btn" id="open-task-form">＋ Add task</button></div>
-          <form id="task-form" class="inline-form hidden"><input id="task-title" placeholder="Task name (e.g. Revise algebra)" required maxlength="90"/><select id="task-subject"><option>General</option><option>Mathematics</option><option>Science</option><option>English</option><option>Computer Science</option><option>Social Studies</option></select><input id="task-due" type="date" aria-label="Due date" required/><button class="primary-btn" type="submit">Save</button></form>
-          <div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="pending">Pending</button><button class="filter" data-filter="done">Completed</button></div><div id="task-list" class="task-list"></div>
-        </article>
-        <article class="panel schedule-panel"><div class="panel-heading"><div><h3>Study schedule</h3><p>Build a balanced routine.</p></div><span class="calendar-icon">▦</span></div>
-          <form id="schedule-form" class="schedule-form"><input id="schedule-time" type="time" value="16:00" required/><input id="schedule-subject" placeholder="Study topic" required maxlength="70"/><button type="submit" class="icon-btn" aria-label="Add schedule item">＋</button></form>
-          <div id="schedule-list" class="schedule-list"></div>
-        </article>
-      </section>
-      <section class="panel goals-panel" id="goals-section"><div class="panel-heading"><div><h3>My study goals</h3><p>Small goals create big habits.</p></div><button class="secondary-btn" id="open-goal-form">＋ Add goal</button></div>
-        <form id="goal-form" class="inline-form hidden"><input id="goal-title" placeholder="Goal (e.g. Read 20 pages daily)" required maxlength="90"/><button class="primary-btn" type="submit">Save goal</button></form><div id="goal-list" class="goal-list"></div>
-      </section>
-      <footer>StudyFlow · Student Planner <span>✨ Made for focused learning</span></footer>
-    </main>
-  </div>
+  <header class="topbar">
+    <div class="brand">🧠 SmartQuiz</div>
+    <nav><a href="#home">Home</a><a href="#quiz">Take Quiz</a><a href="#dashboard">Dashboard</a></nav>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">LEARN • PRACTICE • IMPROVE</p>
+        <h1>Your learning journey,<br><span>one quiz at a time.</span></h1>
+        <p>Practice questions, track your score, and review your progress in one simple student-friendly platform.</p>
+        <a class="primary-link" href="#quiz">Start a quiz →</a>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon">🎯</div>
+        <h3>Ready to test your knowledge?</h3>
+        <p>Answer 5 questions and see your results instantly.</p>
+        <div class="mini-stats"><span>5 Questions</span><span>Instant Results</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="quiz">
+      <div class="section-heading">
+        <div><p class="eyebrow">PRACTICE AREA</p><h2>General Knowledge Quiz</h2></div>
+        <span class="pill" id="question-count">5 questions</span>
+      </div>
+      <div class="progress-track"><div id="progress" class="progress"></div></div>
+      <div id="quiz-area">
+        <p id="question-number" class="muted">Question 1 of 5</p>
+        <h3 id="question-text">Loading question…</h3>
+        <div id="options" class="options"></div>
+        <div class="quiz-actions">
+          <span id="feedback" aria-live="polite"></span>
+          <button id="next-btn" class="primary-btn" disabled>Next question →</button>
+        </div>
+      </div>
+      <div id="result-area" class="result hidden">
+        <div class="result-emoji" id="result-emoji">🏆</div>
+        <p class="eyebrow">QUIZ COMPLETED</p>
+        <h2 id="result-title">Great work!</h2>
+        <p id="result-score" class="score">0 / 5</p>
+        <p id="result-message"></p>
+        <button id="restart-btn" class="primary-btn">Try again</button>
+      </div>
+    </section>
+
+    <section class="dashboard" id="dashboard">
+      <div class="section-heading"><div><p class="eyebrow">YOUR ACTIVITY</p><h2>Student Dashboard</h2></div></div>
+      <div class="stat-grid">
+        <article class="stat-card"><span class="stat-icon">📝</span><p>Quizzes completed</p><h3 id="completed-stat">0</h3></article>
+        <article class="stat-card"><span class="stat-icon">⭐</span><p>Best score</p><h3 id="best-stat">—</h3></article>
+        <article class="stat-card"><span class="stat-icon">📈</span><p>Latest score</p><h3 id="latest-stat">—</h3></article>
+      </div>
+      <p class="small-note">Demo version: progress is saved in this browser using LocalStorage.</p>
+    </section>
+  </main>
+
+  <footer><strong>SmartQuiz</strong> · Student Quiz Application SaaS Demo · Built with HTML, CSS and JavaScript</footer>
   <script src="script.js"></script>
 </body>
 </html>
