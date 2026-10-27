@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyFlow — Student Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">✦</span><div><strong>StudyFlow</strong><small>STUDENT WORKSPACE</small></div></div>
+      <nav>
+        <button class="nav-link active" data-view="dashboard">▦ <span>Dashboard</span></button>
+        <button class="nav-link" data-view="tasks">☑ <span>My Tasks</span></button>
+        <button class="nav-link" data-view="schedule">▤ <span>Study Schedule</span></button>
+        <button class="nav-link" data-view="goals">◎ <span>Goals</span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="mini-avatar">S</div><div><strong>Student</strong><small>Free workspace</small></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><p class="eyebrow">YOUR PERSONAL STUDY SPACE</p><h1 id="page-title">Good morning! 👋</h1><p class="subheading">Plan your day, stay focused, and make progress.</p></div><div class="date-pill" id="today-date"></div></header>
+      <section class="welcome-card"><div><span class="welcome-label">LET'S MAKE TODAY COUNT</span><h2>A little progress every day<br/>adds up to big results.</h2><p>Organize your tasks and build a study routine that works for you.</p></div><div class="welcome-art">📚<span>✦</span></div></section>
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">☑</div><p>Tasks completed</p><strong id="completed-count">0</strong><small>Keep up the great work</small></article>
+        <article class="stat-card"><div class="stat-icon orange">◷</div><p>Tasks remaining</p><strong id="remaining-count">0</strong><small>One step at a time</small></article>
+        <article class="stat-card"><div class="stat-icon green">◎</div><p>Study goals</p><strong id="goal-count">0</strong><small>Goals you have set</small></article>
+      </section>
+      <section class="content-grid">
+        <article class="panel task-panel" id="task-section"><div class="panel-heading"><div><h3 id="task-heading">Today's tasks</h3><p>Your next steps, all in one place.</p></div><button class="primary-btn" id="open-task-form">＋ Add task</button></div>
+          <form id="task-form" class="inline-form hidden"><input id="task-title" placeholder="Task name (e.g. Revise algebra)" required maxlength="90"/><select id="task-subject"><option>General</option><option>Mathematics</option><option>Science</option><option>English</option><option>Computer Science</option><option>Social Studies</option></select><input id="task-due" type="date" aria-label="Due date" required/><button class="primary-btn" type="submit">Save</button></form>
+          <div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="pending">Pending</button><button class="filter" data-filter="done">Completed</button></div><div id="task-list" class="task-list"></div>
+        </article>
+        <article class="panel schedule-panel"><div class="panel-heading"><div><h3>Study schedule</h3><p>Build a balanced routine.</p></div><span class="calendar-icon">▦</span></div>
+          <form id="schedule-form" class="schedule-form"><input id="schedule-time" type="time" value="16:00" required/><input id="schedule-subject" placeholder="Study topic" required maxlength="70"/><button type="submit" class="icon-btn" aria-label="Add schedule item">＋</button></form>
+          <div id="schedule-list" class="schedule-list"></div>
+        </article>
+      </section>
+      <section class="panel goals-panel" id="goals-section"><div class="panel-heading"><div><h3>My study goals</h3><p>Small goals create big habits.</p></div><button class="secondary-btn" id="open-goal-form">＋ Add goal</button></div>
+        <form id="goal-form" class="inline-form hidden"><input id="goal-title" placeholder="Goal (e.g. Read 20 pages daily)" required maxlength="90"/><button class="primary-btn" type="submit">Save goal</button></form><div id="goal-list" class="goal-list"></div>
+      </section>
+      <footer>StudyFlow · Student Planner <span>✨ Made for focused learning</span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
